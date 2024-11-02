@@ -1,5 +1,7 @@
 package com.ureca.sole_paradise.missing.db.dto;
 
+import java.time.OffsetDateTime;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -8,40 +10,43 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MissingDTO {
-	private Integer missingId;
 
-	@NotNull
-	@Size(max = 100)
-	private String alarmName;
+    private Integer missingId;
 
-	@NotNull
-	@Size(max = 100)
-	private String location;
+    @NotNull
+    @Size(max = 100)
+    private String alarmName;
 
-	@NotNull
-	private Integer alertRadiusKm;
+    @NotNull
+    @Size(max = 100)
+    private String location;
 
-	@NotNull
-	private OffsetDateTime missingDate;
+    private Integer alertRadiusKm;
 
-	@NotNull
-	private OffsetDateTime createdAt;
+    @NotNull
+    private OffsetDateTime missingDate;
 
-	private OffsetDateTime updatedAt;
+    @NotNull
+    private OffsetDateTime createdAt;
 
-	@NotNull
-	@Size(max = 2000)
-	private String missingDetails;
+    private OffsetDateTime updatedAt;
 
-	@NotNull
-	private Integer missingStatus;
+    @NotNull
+    @Size(max = 2000)
+    private String missingDetails;
 
-	@NotNull
-	private Integer pet;
+    private Integer missingStatus;
 
-	private String MissingPetPicture;
+    @NotNull
+    private String alarmPicture;
 
-	@NotNull
-	private Integer walkroute;
+    @NotNull
+    private Boolean contactNumber;
+
+    @NotNull
+    private Integer pet;
+
+    @NotNull
+    private Integer walkroute;
 
 }

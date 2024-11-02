@@ -1,4 +1,4 @@
-package com.ureca.sole_paradise.community.service;
+/*package com.ureca.sole_paradise.community.service;
 
 import java.util.List;
 
@@ -85,4 +85,4 @@ public class CommunityCommentService {
 	        return communityCommentEntity;
 	    }
 	
-}
+}*/

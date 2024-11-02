@@ -1,4 +1,4 @@
-package com.ureca.sole_paradise.community.controller;
+/*package com.ureca.sole_paradise.community.controller;
 
 import java.util.List;
 
@@ -72,4 +72,4 @@ public class CommunityController {
 	    }
 
 	
-}
+}*/

@@ -2,6 +2,7 @@ package com.ureca.sole_paradise.pet.db.entity;
 import java.time.OffsetDateTime;
 import java.util.Set;
 
+import com.ureca.sole_paradise.health.db.entity.HealthEntity;
 import com.ureca.sole_paradise.user.db.entity.UserEntity;
 
 import jakarta.persistence.Column;
@@ -63,9 +64,9 @@ private Boolean gender;
 @JoinColumn(name = "user_id", nullable = false)
 private UserEntity user;
 
-@OneToMany(mappedBy = "pet")
-private Set<Missing> petMissings;
+/*@OneToMany(mappedBy = "pet")
+private Set<MissingEntity> petMissings;*/
 
 @OneToMany(mappedBy = "pet")
-private Set<Health> petHealths;
+private Set<HealthEntity> petHealths;
 }

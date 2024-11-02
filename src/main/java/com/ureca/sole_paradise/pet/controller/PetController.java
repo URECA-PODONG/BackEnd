@@ -1,5 +1,6 @@
 package com.ureca.sole_paradise.pet.controller;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,31 +24,31 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ureca.sole_paradise.pet.db.dto.PetDTO;
 import com.ureca.sole_paradise.pet.service.PetService;
+import com.ureca.sole_paradise.util.ReferencedException;
+import com.ureca.sole_paradise.util.ReferencedWarning;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.constraints.NotNull;
 
 @RestController
 @RequestMapping(value = "/api/pets", produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin(origins = "*")  // CORS 설정 추가
 public class PetController {
-	@Autowired
-	private final PetService petService;
-	
 
-	public PetResource(final PetService petService) {
-	    this.petService = petService;
-	}
+    private final PetService petService;
 
-	@GetMapping
-	public ResponseEntity<List<PetDTO>> getAllPets() {
-	    return ResponseEntity.ok(petService.findAll());
-	}
+    public PetController(final PetService petService) {
+        this.petService = petService;
+    }
 
-	@GetMapping("/{petId}")
-	public ResponseEntity<PetDTO> getPet(@PathVariable(name = "petId") final Integer petId) {
-	    return ResponseEntity.ok(petService.get(petId));
-	}
+    @GetMapping
+    public ResponseEntity<List<PetDTO>> getAllPets() {
+        return ResponseEntity.ok(petService.findAll());
+    }
+
+    @GetMapping("/{petId}")
+    public ResponseEntity<PetDTO> getPet(@PathVariable(name = "petId") final Integer petId) {
+        return ResponseEntity.ok(petService.get(petId));
+    }
 
 	/*@PostMapping
 	@ApiResponse(responseCode = "201")
@@ -69,6 +70,7 @@ public class PetController {
 	    @RequestParam("gender") boolean gender,
 	    @RequestParam("user") int user,
 	    @RequestParam("createdAt") @NotNull OffsetDateTime createdAt,
+	    @RequestParam(value = "updatedAt", required = false) OffsetDateTime updatedAt, 
 	    @RequestParam(value = "image", required = false) MultipartFile file) {
 
 	    // PetDTO 객체 생성 및 설정
@@ -83,6 +85,7 @@ public class PetController {
 	    petDTO.setGender(gender);
 	    petDTO.setCreatedAt(createdAt);
 	    petDTO.setUser(user);
+	    petDTO.setUpdatedAt(updatedAt != null ? updatedAt : OffsetDateTime.now());
 
 	    // 파일 처리 로직 추가
 	    if (file != null && !file.isEmpty()) {
@@ -150,12 +153,20 @@ public class PetController {
 
 
 		        if (file != null && !file.isEmpty()) {
-		            String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-		            Path filePath = Paths.get(UPLOAD_DIR + fileName);
+		            String fileName = System.currentTimeMillis() + "";
+		            String[] exts = file.getOriginalFilename().split("\\\\.");
+		            String ext = exts[exts.length - 1]; // 확장자
+		            Path filePath = Paths.get(UPLOAD_DIR + fileName + "." + ext);
 		            Files.createDirectories(filePath.getParent());
 		            Files.copy(file.getInputStream(), filePath);
-		            petDTO.setPetPicture("uploads/" + fileName);
+		            String fp = filePath.toString();
+		            System.out.println("fp=" + fp);
+		            int staticIndex = fp.lastIndexOf("uploads");
+		            String ss = fp.substring(staticIndex + 8);
+		            petDTO.setPetPicture(ss);
+		            System.out.println("ss=" + ss);
 		        }
+
 
 	        final Integer createdPetId = petService.create(petDTO);
 	        return new ResponseEntity<>(createdPetId, HttpStatus.CREATED);
@@ -165,5 +176,5 @@ public class PetController {
 	    }
 		}
 	}
-}
+
 
