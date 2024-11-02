@@ -7,16 +7,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
 
-<<<<<<< HEAD
-	 @Override
-	    public void addCorsMappings(CorsRegistry registry) {
-	        registry.addMapping("/**")  // 모든 하위 경로 포함
-	        		.allowedOriginPatterns("http://localhost:5173")
-	                .allowedMethods("GET", "POST", "PUT", "DELETE")
-	                .allowedHeaders("*")  // 모든 헤더 허용
-	                .allowCredentials(true);
-	    }
-=======
      @Override
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**")  // 모든 하위 경로 포함
@@ -25,5 +15,5 @@ public class WebConfig implements WebMvcConfigurer {
                     .allowedHeaders("*")  // 모든 헤더 허용
                     .allowCredentials(true);
         }
->>>>>>> origin/develop
+
 }
