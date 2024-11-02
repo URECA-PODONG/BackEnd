@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.time.OffsetDateTime;
 import java.util.Set;
 
-@Entity(name = "Community")
+@Entity
 public class CommunityEntity {
 
     @Id
@@ -36,6 +36,6 @@ public class CommunityEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-//    @OneToMany(mappedBy = "post")
-//    private Set<CommunityComment> postCommunityComments;
+   // @OneToMany(mappedBy = "post")
+   //private Set<CommunityComment> postCommunityComments;
 }
