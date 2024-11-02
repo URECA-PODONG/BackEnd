@@ -48,10 +48,10 @@ public class KakaoLoginController {
                                                 String jwtToken = jwtTokenProvider.generateToken(userId.toString());
                                                 log.info("Generated JWT Token: {}", jwtToken);
 
-                                                String redirectUrl = UriComponentsBuilder.fromUriString("http://localhost:5173/petRegister")
+                                                String redirectUrl = UriComponentsBuilder.fromUriString("http://localhost:5173/userRegister/:userId")
                                                         .queryParam("jwtToken", jwtToken)
-//                                                        .queryParam("accessToken", accessToken)
-//                                                        .queryParam("refreshToken", refreshToken)
+                                                        .queryParam("accessToken", accessToken)
+                                                        .queryParam("refreshToken", refreshToken)
                                                         .queryParam("userId", userId) // SQL에서 가져온 userId 사용
                                                         .encode()  // 인코딩 처리
                                                         .toUriString();
