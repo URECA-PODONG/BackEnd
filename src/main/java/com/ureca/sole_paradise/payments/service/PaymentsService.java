@@ -29,7 +29,7 @@ public class PaymentsService {
 
     private final PaymentsRepository paymentsRepository;
 
-    public void createPayLog(String impUid) throws IamportResponseException, IOException {
+    public void createPayLog(String impUid, int userId) throws IamportResponseException, IOException {
 
         IamportResponse<Payment> iamportResponse = iamportClient.paymentByImpUid(impUid);
 
