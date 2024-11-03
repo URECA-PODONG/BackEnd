@@ -1,29 +1,43 @@
 package com.ureca.sole_paradise.petItem.db.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class PetItemDTO {
 
-    private int petItemId;
-    private String name;
-    private String description;
-    private String imageUrl;//사진
-    private int status;
-    private int price;
-    private int good;
-    private int sharing;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private String nanum;// 나눔 여부??
-    private int user;
+	private Integer petItemId;
 
+    @NotNull
+    @Size(max = 255)
+    private String name;
+
+    @NotNull
+    private String description;
+
+    private String imageUrl;//사진 
+
+    private Integer status;
+
+    private Integer price;
+
+    private Integer good;
+
+    private Integer sharing;
+
+    @NotNull
+    private OffsetDateTime createdAt;
+
+    private OffsetDateTime updatedAt;
+
+    @Size(max = 255)
+    private String nanum;// 나눔 여부??
+
+    @NotNull
+    private Integer user;
 }

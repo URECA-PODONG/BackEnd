@@ -1,12 +1,18 @@
 package com.ureca.sole_paradise.community.db.entity;
 
 import com.ureca.sole_paradise.user.db.entity.UserEntity;
+
+
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.OffsetDateTime;
 import java.util.Set;
 
 @Entity
+@Getter
+@Setter
 public class CommunityEntity {
 
     @Id
@@ -20,6 +26,9 @@ public class CommunityEntity {
     @Column(nullable = false, columnDefinition = "longtext")
     private String contents;
 
+    @Column(columnDefinition = "longtext")
+    private String imageUrl;
+    
     @Column
     private Integer good;
 
@@ -36,6 +45,6 @@ public class CommunityEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-   // @OneToMany(mappedBy = "post")
-   //private Set<CommunityComment> postCommunityComments;
+    @OneToMany(mappedBy = "post")
+    private Set<CommunityCommentEntity> postCommunityComments;
 }

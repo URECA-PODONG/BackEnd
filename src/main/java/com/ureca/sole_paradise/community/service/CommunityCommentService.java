@@ -31,7 +31,7 @@ public class CommunityCommentService {
 	    }
 
 	    public List<CommunityCommentDTO> findAll() {
-	        final List<CommunityCommentEntity> communityCommentEntites = CommunityCommentRepository.findAll(Sort.by("commentId"));
+	        final List<CommunityCommentEntity> communityCommentEntites = communityCommentRepository.findAll(Sort.by("commentId"));
 	        return communityCommentEntites.stream()
 	                .map(communityCommentEntity -> mapToDTO(communityCommentEntity, new CommunityCommentDTO()))
 	                .toList();
