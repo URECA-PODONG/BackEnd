@@ -2,16 +2,16 @@ package com.ureca.sole_paradise.petItem.db.entity;
 
 import com.ureca.sole_paradise.user.db.entity.UserEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Set;
 
-@Entity(name = "petItem")
+@Entity
 @Getter
-@Builder
+@Setter
 public class PetItemEntity {
 
     @Id
@@ -45,10 +45,10 @@ public class PetItemEntity {
     private Integer sharing;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt;
+    private OffsetDateTime createdAt;
 
     @Column
-    private LocalDateTime updatedAt;
+    private OffsetDateTime updatedAt;
 
     @Column
     private String nanum;
@@ -57,7 +57,9 @@ public class PetItemEntity {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-//    @OneToMany(mappedBy = "petItem")
-//    private Set<PetItemComment> petItemPetItemComments;
+
+
+    @OneToMany(mappedBy = "petItem")
+    private Set<PetItemCommentEntity> petItemPetItemComments;
 
 }

@@ -17,6 +17,8 @@ public class CommunityDTO {
     @Size(max = 255)
     private String title;
 
+    private String imageUrl;//사진 
+    
     @NotNull
     private String contents;
 
